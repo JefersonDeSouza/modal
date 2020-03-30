@@ -1,0 +1,59 @@
+<div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formAprovacaoAutomatica" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Forma de Aprovação Automática</label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipoAprovacao" id="tipoAprovacaoEmail" formControlName="tipoAprovacao" value="email">
+                    <label class="form-check-label" for="tipoAprovacaoEmail">E-mail</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipoAprovacao" id="tipoAprovacaoTelefone" formControlName="tipoAprovacao" value="telefone">
+                    <label class="form-check-label" for="tipoAprovacaoTelefone">Telefone</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row aprova-por-email">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input class="form-control" type="text" name="email" id="email" formControlName="email" />
+            </div>
+
+            <div class="form-group">
+                <label for="dataContato">Data do Contato</label>
+                <input class="form-control" type="text" name="dataContato" id="dataContato" formControlName="dataContato" />
+            </div>
+        </div>
+
+        <div class="form-row aprova-por-telefone">
+            <div class="form-group">
+                <label for="ramalGravado">Ramal Gravado</label>
+                <input class="form-control" type="text" name="ramalGravado" id="ramalGravado" formControlName="ramalGravado" />
+            </div>
+
+            <div class="form-group">
+                <label for="horarioLigacao">Horário da Ligação</label>
+                <input class="form-control" type="text" name="horarioLigacao" id="horarioLigacao" formControlName="horarioLigacao" />
+            </div>
+        </div>
+        <div class="text-left">
+            <button type="submit" class="btn btn-default" [disabled]="!formAprovacaoAutomatica.valid">Enviar</button>
+        </div>
+
+        <p>
+            {{formAprovacaoAutomatica.status}}
+        </p>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="confirm()">Confirmar</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">Cancelar</button>
+</div>
